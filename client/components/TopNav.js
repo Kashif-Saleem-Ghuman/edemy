@@ -1,20 +1,29 @@
 "use client";
 import React, { useState } from "react";
 import { Menu } from "antd";
-import { AppstoreOutlined, MailOutlined } from "@ant-design/icons";
+import {
+  UserAddOutlined,
+  LoginOutlined,
+  HomeOutlined,
+} from "@ant-design/icons";
 
 import Link from "next/link";
 
 const items = [
   {
+    label: <Link href="/">Home</Link>,
+    key: "Home",
+    icon: <HomeOutlined />,
+  },
+  {
     label: <Link href="/login">Login</Link>,
     key: "login",
-    icon: <MailOutlined />,
+    icon: <LoginOutlined />,
   },
   {
     label: <Link href="/register">Register</Link>,
     key: "register",
-    icon: <AppstoreOutlined />,
+    icon: <UserAddOutlined />,
   },
 ];
 
