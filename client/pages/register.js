@@ -1,13 +1,23 @@
 import { useState } from "react";
+import axios from "axios";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.table({ name, email, password });
+    try {
+      const { data } = await axios.post(`http://localhost:8000/api/register`, {
+        name,
+        email,
+        password,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>
@@ -16,7 +26,7 @@ const Register = () => {
       </h1>
       <div className="container col-md-6 offset-md-3 py-5">
         <form onSubmit={handleSubmit}>
-          <label for="Name">Name</label>
+          <label htmlFor="Name">Name</label>
           <input
             type="text"
             id="Name"
@@ -26,7 +36,7 @@ const Register = () => {
             onChange={(e) => setName(e.target.value)}
           />
 
-          <label for="Email">Email address</label>
+          <label htmlFor="Email">Email address</label>
           <input
             type="email"
             id="Email"
@@ -36,7 +46,7 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label for="Password">Email address</label>
+          <label htmlFor="Password">Email address</label>
           <input
             type="password"
             id="Password"
